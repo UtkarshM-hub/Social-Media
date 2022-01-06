@@ -1,10 +1,49 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import classes from "../CSS/CreatePost.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faImage } from "@fortawesome/free-solid-svg-icons";
+import { faImage, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 import Button from "../../UI/JS/Button";
+import axios from "axios";
 
 const CreatePost = (props) => {
+  const [image, setImage] = useState();
+  const [text, setText] = useState();
+  const textRef = useRef();
+
+  const OpenFilePicker = () => {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.style = { display: "none" };
+    input.click();
+    input.addEventListener("change", (e) => {
+      if (e.target.files && e.target.files.length >= 0) {
+        setImage(e.target.files[0]);
+      }
+      return;
+    });
+  };
+
+  console.log(image);
+  const CreatePostHandler = async (e) => {
+    e.preventDefault();
+    const form = new FormData();
+    form.append("Text", text);
+    form.append("image", image);
+    await axios
+      .post("http://localhost/post/createPost", form, {
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+      .then((result) => {
+        if (result.status === 200) {
+          text = null;
+          setImage(undefined);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className={classes.CreatePost}>
       <div className={classes.Card_Info}>
@@ -14,18 +53,42 @@ const CreatePost = (props) => {
       </div>
       <div className={classes.CreatePost_Attachments}>
         <div className={classes.Attachment_TextArea}>
-          <span role="textbox" contentEditable>
-            {/* <textarea type="text" placeholder="What's happening?" /> */}
-          </span>
+          {/* <textarea placeholder="What's happening?"></textarea> */}
+          <p>
+            <span
+              onBlur={(e) => {
+                setText(e.target.innerText);
+              }}
+              className={classes.textarea}
+              role="textbox"
+              contentEditable
+            ></span>
+          </p>
+          {image != undefined && (
+            <div className={classes.image_Container}>
+              <img
+                className={classes.upload_IMG}
+                src={URL.createObjectURL(image)}
+              />
+              <FontAwesomeIcon
+                onClick={(e) => {
+                  setImage(undefined);
+                }}
+                className={classes.CancelBtn}
+                icon={faTimesCircle}
+              />
+            </div>
+          )}
         </div>
         <div className={classes.CreatePost_LastContainer}>
           <div className={classes.CreatePost_Icons}>
             <FontAwesomeIcon
-              className={classes.CreatePost_Icons}
+              className={classes.CancelBtn}
               icon={faImage}
+              onClick={OpenFilePicker}
             />
           </div>
-          <Button>Create</Button>
+          <Button onClick={CreatePostHandler}>Create</Button>
         </div>
       </div>
     </div>
