@@ -10,7 +10,7 @@ var usersRouter = require('./routes/users');
 var postRouter = require('./routes/Post');
 
 var app = express();
-const URI='mongodb+srv://UtMandape:1BGR3QO2fcFmFHXw@cluster0.akibk.mongodb.net/Social-Media?retryWrites=true&w=majority'
+const URI='DataBaseURI'
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
