@@ -6,9 +6,9 @@ import Button from "../../UI/JS/Button";
 import axios from "axios";
 
 const CreatePost = (props) => {
-  const [image, setImage] = useState();
-  const [text, setText] = useState();
-  const textRef = useRef();
+  const [image, setImage] = useState(null);
+  const [spanEle, setSpanEle] = useState(null);
+  const [text, setText] = useState(null);
 
   const OpenFilePicker = () => {
     const input = document.createElement("input");
@@ -34,14 +34,13 @@ const CreatePost = (props) => {
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then((result) => {
-        if (result.status === 200) {
-          text = null;
-          setImage(undefined);
-        }
+        spanEle.innerText = "";
+        setImage(null);
       })
       .catch((err) => {
         console.log(err);
       });
+    return props.getPosts();
   };
 
   return (
@@ -57,6 +56,7 @@ const CreatePost = (props) => {
           <p>
             <span
               onBlur={(e) => {
+                setSpanEle(e.target);
                 setText(e.target.innerText);
               }}
               className={classes.textarea}
