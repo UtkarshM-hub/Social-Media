@@ -1,0 +1,16 @@
+main {
+  background-color: var(--mainBlack);
+  color: white;
+  width: 100%;
+  min-height: 100vh;
+  padding: 1em 8rem;
+}
+
+.Layout {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+}

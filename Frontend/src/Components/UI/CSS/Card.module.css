@@ -1,0 +1,54 @@
+.Card {
+  background-color: var(--CardBg);
+  width: 60%;
+  height: 100%;
+  margin: 1em auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.Card_Info {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 1em;
+  border-bottom: 2px solid rgb(80, 80, 80);
+}
+
+.Card_Profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  border: 2px solid white;
+}
+
+.Card_Profile img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.Card_Info p {
+  margin: 0 1em;
+}
+
+.Card_PostImg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.Card_PostImg,
+.Card_PostImg img {
+  width: 100%;
+}

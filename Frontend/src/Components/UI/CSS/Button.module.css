@@ -1,0 +1,11 @@
+button {
+  color: white;
+  border: none;
+  outline: none;
+  font-family: "Open Sans";
+  border-radius: 1.1em;
+  background-color: var(--mainColor);
+  font-weight: bold;
+  font-size: 1.1em;
+  padding: 0.5em 1em;
+}

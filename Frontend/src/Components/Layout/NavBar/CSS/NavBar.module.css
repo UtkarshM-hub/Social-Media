@@ -1,0 +1,43 @@
+nav {
+  width: 100%;
+  background-color: var(--secondaryBlack);
+  border-bottom: 1px solid #303030;
+}
+
+.Nav_Main {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Nav_Image img {
+  width: 5rem;
+}
+
+.Nav_Navigation {
+  font-family: "Open Sans";
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.Nav_Link {
+  text-decoration: none;
+  color: rgb(136, 136, 136);
+  padding: 0 1em;
+}
+
+.Nav_Link:hover {
+  color: rgb(173, 173, 173);
+}
+
+.Nav_Icon {
+  font-size: 1.11rem;
+}
+
+.active {
+  color: var(--mainColor);
+  font-weight: bold;
+}
