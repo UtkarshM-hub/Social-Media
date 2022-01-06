@@ -25,6 +25,8 @@ const fileFilter=(req,file,cb)=>{
 
 const upload=multer({storage:storage,fileFilter:fileFilter})
 
-Router.post('/createPost',upload.single('image'),postController.createPost)
+Router.post('/createPost',upload.single('image'),postController.createPost);
+
+Router.get('/getPosts',postController.getPosts);
 
 module.exports=Router;

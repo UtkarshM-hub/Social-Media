@@ -52,3 +52,17 @@
 .Card_PostImg img {
   width: 100%;
 }
+
+.Card_Text {
+  padding: 1em;
+  min-height: 2em;
+  width: 100%;
+}
+
+.Card_Text p {
+  text-align: left;
+  overflow: hidden;
+  width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

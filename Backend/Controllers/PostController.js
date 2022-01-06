@@ -17,3 +17,15 @@ exports.createPost=async(req,res,next)=>{
         next(err);
     }
 }
+
+exports.getPosts=async(req,res,next)=>{
+    try{
+        const posts=await Post.find();
+        res.send(posts);
+    } catch(err){
+        if(!err.statusCode){
+            err.statusCode=500;
+        }
+        next(err);
+    }
+}
