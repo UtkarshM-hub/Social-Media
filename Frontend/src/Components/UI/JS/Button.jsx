@@ -4,7 +4,7 @@ import classes from "../CSS/Button.module.css";
 const Button = (props) => {
   return (
     <Fragment>
-      <button>{props.children}</button>
+      <button onClick={props.onClick}>{props.children}</button>
     </Fragment>
   );
 };
