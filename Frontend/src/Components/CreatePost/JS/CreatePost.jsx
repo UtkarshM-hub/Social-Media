@@ -36,11 +36,15 @@ const CreatePost = (props) => {
       .then((result) => {
         spanEle.innerText = "";
         setImage(null);
+        return props.message({
+          type: "success",
+          message: "Post Created Successfully",
+        });
       })
       .catch((err) => {
         console.log(err);
+        props.message({ type: "error", message: "Please choose an image" });
       });
-    return props.getPosts();
   };
 
   return (
