@@ -1,15 +1,20 @@
 import React from "react";
-
+import { useHistory } from "react-router-dom";
 import classes from "../CSS/Card.module.css";
 
 const Card = (props) => {
-  console.log(props);
+  const history = useHistory();
   let image;
   if (props.image !== undefined) {
     image = props.image.replace("public", "");
   }
   return (
-    <div className={classes.Card}>
+    <div
+      className={classes.Card}
+      onClick={() => {
+        history.push(`/post/viewPost/postId:${props.id}`);
+      }}
+    >
       <div className={classes.Card_Info}>
         <div className={classes.Card_Profile}>
           <img src={`http://localhost${image}`} alt="Profile" />

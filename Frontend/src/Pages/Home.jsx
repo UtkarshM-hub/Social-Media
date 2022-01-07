@@ -3,18 +3,24 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import CreatePost from "../Components/CreatePost/JS/CreatePost";
 import Card from "../Components/UI/JS/Card";
+import Message from "../Components/UI/JS/Message";
 import image from "../sources/Example.jpg";
 import loader from "../sources/Spinner.gif";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
+  const [createMessage, setCreateMessage] = useState({
+    type: undefined,
+    message: undefined,
+  });
   const [isReloaded, setIsReloaded] = useState(false);
 
   useEffect(() => {
-    setIsReloaded(true);
     getPostsHandler();
   }, []);
+
   const getPostsHandler = async () => {
+    setIsReloaded(true);
     await axios
       .get("http://localhost/post/getPosts")
       .then((result) => {
@@ -26,10 +32,25 @@ const Home = () => {
       });
     setIsReloaded(false);
   };
-  console.log(!posts[0]);
+
+  const setMessageHandler = ({ type, message }) => {
+    setCreateMessage({
+      type: type,
+      message: message,
+    });
+    const timer = setTimeout(() => {
+      setCreateMessage({ type: undefined, message: undefined });
+      clearTimeout(timer);
+    }, 2000);
+    if (type === "success") {
+      getPostsHandler();
+    }
+  };
+
   return (
     <div>
-      <CreatePost getPosts={getPostsHandler} img={image} />
+      <Message message={createMessage.message} type={createMessage.type} />
+      <CreatePost message={setMessageHandler} img={image} />
       {isReloaded === true && (
         <div
           style={{
@@ -50,7 +71,12 @@ const Home = () => {
       )}
       {posts[0] &&
         posts.map((post) => (
-          <Card key={post._id} image={post.image} text={post.text} />
+          <Card
+            key={post._id}
+            id={post._id}
+            image={post.image}
+            text={post.text}
+          />
         ))}
       {!posts[0] && isReloaded === false && (
         <h1 style={{ textAlign: "center" }}>Nothing to Show</h1>

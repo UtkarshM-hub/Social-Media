@@ -1,0 +1,48 @@
+.Message {
+  width: 25%;
+  right: 1%;
+  top: -10%;
+  transform: translate(-1%, -15%);
+  /* height: 100%; */
+  background-color: #3fff00;
+  /* margin: 0 auto; */
+  border-radius: 6px;
+  padding: 0.7em 1em;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  transition: 0.3s;
+  position: fixed;
+}
+
+.show {
+  top: 15%;
+}
+
+.hide {
+  top: -10%;
+}
+
+.successIcon {
+  color: #3fff00;
+  font-size: 1.5em;
+}
+
+.errorIcon {
+  color: #680000;
+  font-size: 1.5em;
+}
+
+.infoIcon {
+  color: #8198ff;
+  font-size: 1.5em;
+}
+
+.warningIcon {
+  color: #e9eb9e;
+  font-size: 1.5em;
+}
+
+.Message p {
+  margin: 0 2em;
+}
