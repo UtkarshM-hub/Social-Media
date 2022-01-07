@@ -29,4 +29,6 @@ Router.post('/createPost',upload.single('image'),postController.createPost);
 
 Router.get('/getPosts',postController.getPosts);
 
+Router.post('/getSinglePost',postController.getSinglePost);
+
 module.exports=Router;

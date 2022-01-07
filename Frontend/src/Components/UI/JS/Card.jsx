@@ -1,30 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import classes from "../CSS/Card.module.css";
 
+import LikesContainer from "./LikesContainer";
+
 const Card = (props) => {
   const history = useHistory();
+  const [isClicked, setIsClicked] = useState(false);
   let image;
   if (props.image !== undefined) {
     image = props.image.replace("public", "");
   }
+  const openSingleCardHandler = () => {
+    history.push(`/Post/viewPost/${props.id}`);
+  };
+
   return (
-    <div
-      className={classes.Card}
-      onClick={() => {
-        history.push(`/post/viewPost/postId:${props.id}`);
-      }}
-    >
-      <div className={classes.Card_Info}>
+    <div className={classes.Card}>
+      <div className={classes.Card_Info} onClick={openSingleCardHandler}>
         <div className={classes.Card_Profile}>
           <img src={`http://localhost${image}`} alt="Profile" />
         </div>
         <p>utkarshmandape</p>
       </div>
-      <div className={classes.Card_PostImg}>
+      <div className={classes.Card_PostImg} onClick={openSingleCardHandler}>
         <img src={`http://localhost${image}`} alt="post" />
       </div>
-      <div className={classes.Card_Text}>
+      <LikesContainer className={classes.likesContainerClass} />
+      <div className={classes.Card_Text} onClick={openSingleCardHandler}>
         <p>{props.text}</p>
       </div>
     </div>
