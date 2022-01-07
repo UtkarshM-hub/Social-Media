@@ -1,0 +1,22 @@
+.LiksContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 1em;
+  margin: 0.5em 0;
+  cursor: pointer;
+  border-top: 2px solid grey;
+}
+
+.LiksContainer p {
+  margin: 0 0.5em;
+}
+
+.likedIcon {
+  color: var(--Red);
+}
+
+.likesIcon {
+  color: white;
+}

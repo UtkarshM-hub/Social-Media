@@ -67,3 +67,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+.likesContainerClass {
+  border-top: 2px solid transparent !important;
+}

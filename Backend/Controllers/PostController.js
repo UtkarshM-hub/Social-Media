@@ -29,3 +29,18 @@ exports.getPosts=async(req,res,next)=>{
         next(err);
     }
 }
+
+exports.getSinglePost=async(req,res,next)=>{
+    const { postId }=req.body;
+
+    try{
+        const postData=await Post.findById(postId);
+        res.json({post:postData});
+    }
+    catch(err){
+        if(!err.statusCode){
+            err.statusCode=500;
+        }
+        next(err);
+    }
+}

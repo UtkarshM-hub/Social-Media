@@ -20,6 +20,7 @@ const NavBar = () => {
         </div>
         <ul className={classes.Nav_Navigation}>
           <NavLink
+            exact
             to="/"
             className={classes.Nav_Link}
             activeClassName={classes.active}
@@ -34,6 +35,7 @@ const NavBar = () => {
             <FontAwesomeIcon className={classes.Nav_Icon} icon={faHashtag} />
           </NavLink>
           <NavLink
+            exact
             to="/Profile"
             className={classes.Nav_Link}
             activeClassName={classes.active}
