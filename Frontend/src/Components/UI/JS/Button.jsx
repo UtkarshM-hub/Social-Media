@@ -4,7 +4,9 @@ import classes from "../CSS/Button.module.css";
 const Button = (props) => {
   return (
     <Fragment>
-      <button onClick={props.onClick}>{props.children}</button>
+      <button className={props.className} onClick={props.onClick}>
+        {props.children}
+      </button>
     </Fragment>
   );
 };

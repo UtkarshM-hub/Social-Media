@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import classes from "../CSS/Card.module.css";
 
@@ -6,7 +6,6 @@ import LikesContainer from "./LikesContainer";
 
 const Card = (props) => {
   const history = useHistory();
-  const [isClicked, setIsClicked] = useState(false);
   let image;
   if (props.image !== undefined) {
     image = props.image.replace("public", "");

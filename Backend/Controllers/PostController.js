@@ -1,4 +1,6 @@
 const Post=require('../Modules/PostModule');
+const fs=require('fs');
+const path=require('path');
 
 exports.createPost=async(req,res,next)=>{
     const { Text }=req.body;
@@ -43,4 +45,49 @@ exports.getSinglePost=async(req,res,next)=>{
         }
         next(err);
     }
+}
+
+exports.DeletePost=async(req,res,next)=>{
+    const { postId,image } = req.body;
+    try{
+        fs.unlink("public"+image,async(err,response)=>{
+            if(err){
+                next(err);
+            }
+            const respo=await Post.findByIdAndDelete(postId);
+            res.send(respo);
+        })
+    }
+    catch(err){
+        if(!err.statusCode){
+            err.statusCode=500;
+        }
+        next(err);
+    }
+}
+
+exports.editPost=async(req,res,next)=>{
+    const { text,id,image,url }=req.body;
+    try{
+        if(!image){
+            const { path }=req.file;
+            fs.unlink(url,(err)=>{
+                if(err){
+                    return res.send(err);
+                }
+            });
+            const respo=await Post.findByIdAndUpdate(id,{"text":text,image:path});
+            return res.send("successfully updated")
+        }
+        else{
+            const reponse=await Post.findByIdAndUpdate(id,{"text":text,"image":url});
+            return res.send("successfully updated2")
+        }
+    }catch(err){
+        if(!err.statusCode){
+            err.statusCode=500;
+        }
+        next(err);
+    }
+    
 }

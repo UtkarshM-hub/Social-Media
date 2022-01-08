@@ -6,8 +6,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
   faUserCircle,
-  faSignOutAlt,
-  faSignInAlt,
   faHashtag,
 } from "@fortawesome/free-solid-svg-icons";
 

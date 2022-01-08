@@ -31,4 +31,8 @@ Router.get('/getPosts',postController.getPosts);
 
 Router.post('/getSinglePost',postController.getSinglePost);
 
+Router.post('/DeletePost',postController.DeletePost);
+
+Router.post('/editPost',upload.single('image'),postController.editPost);
+
 module.exports=Router;

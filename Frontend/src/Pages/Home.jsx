@@ -1,4 +1,3 @@
-import { faLeaf } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import CreatePost from "../Components/CreatePost/JS/CreatePost";
@@ -33,18 +32,17 @@ const Home = () => {
     setIsReloaded(false);
   };
 
-  const setMessageHandler = ({ type, message }) => {
+  const setMessageHandler = async ({ type, message }) => {
+    console.log("creating message");
     setCreateMessage({
       type: type,
       message: message,
     });
-    const timer = setTimeout(() => {
+    const timer = setTimeout(async () => {
       setCreateMessage({ type: undefined, message: undefined });
       clearTimeout(timer);
+      await getPostsHandler();
     }, 2000);
-    if (type === "success") {
-      getPostsHandler();
-    }
   };
 
   return (
