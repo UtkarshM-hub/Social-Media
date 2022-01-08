@@ -2,8 +2,9 @@ import './App.css';
 import Layout from './Components/Layout/Layout/JS/Layout';
 import React from 'react'
 import Home from './Pages/Home';
-import { Route,Routes,Switch } from 'react-router-dom';
+import { Route,Switch } from 'react-router-dom';
 import SinglePost from './Pages/SinglePost';
+import EditPost from './Components/EditPost/JS/EditPost';
 
 function App() {
   return (
@@ -14,6 +15,9 @@ function App() {
         </Route>
         <Route path="/post/viewPost/:postId" exact>
           <SinglePost/>
+        </Route>
+        <Route path="/post/editPost/:editPostId" exact>
+          <EditPost/>
         </Route>
       </Layout>
     </Switch>

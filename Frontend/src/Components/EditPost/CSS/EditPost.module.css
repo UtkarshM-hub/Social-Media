@@ -1,0 +1,40 @@
+.Container {
+  width: 50%;
+  margin: 2em auto;
+  background-color: var(--CardBg);
+  padding: 1em;
+}
+
+.Container h2 {
+  color: white;
+  text-align: center;
+}
+
+.Form_Container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 1em;
+}
+
+.Form_Container textarea {
+  width: 100%;
+  background-color: transparent;
+  color: white;
+  font-family: "Open Sans";
+  padding: 0.5em;
+  font-size: 1.2em;
+}
+
+.Form_Container img {
+  width: 100%;
+}
+
+.Form_Container button {
+  align-self: flex-end;
+}
+
+.formElements {
+  margin: 1em 0;
+}

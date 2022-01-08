@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import classes from "../CSS/CreatePost.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faImage, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
@@ -6,7 +6,7 @@ import Button from "../../UI/JS/Button";
 import axios from "axios";
 
 const CreatePost = (props) => {
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState(undefined);
   const [spanEle, setSpanEle] = useState(null);
   const [text, setText] = useState(null);
 
