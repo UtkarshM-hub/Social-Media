@@ -86,7 +86,7 @@ const SinglePostCard = (props) => {
   return (
     <Fragment>
       <Message message={createMessage.message} type={createMessage.type} />
-      <div className={classes.singlePostCard}>
+      <div className={classes.singlePostCard} style={{ margin: "1em 8rem" }}>
         <div className={classes.Card_ImageContainer}>
           <img src={`http://localhost${postData.image}`} alt="pic" />
         </div>

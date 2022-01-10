@@ -52,7 +52,7 @@ exports.DeletePost=async(req,res,next)=>{
     try{
         fs.unlink("public"+image,async(err,response)=>{
             if(err){
-                next(err);
+                return next(err);
             }
             const respo=await Post.findByIdAndDelete(postId);
             res.send(respo);
