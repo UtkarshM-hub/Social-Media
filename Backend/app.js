@@ -9,6 +9,7 @@ const Mongoose=require('mongoose');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var postRouter = require('./routes/Post');
+const AuthRouter=require('./routes/auth');
 
 var app = express();
 const URI='mongodb+srv://UtMandape:1BGR3QO2fcFmFHXw@cluster0.akibk.mongodb.net/Social-Media?retryWrites=true&w=majority'
@@ -35,9 +36,11 @@ app.use((req, res, next) => {
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use("/images",express.static(path.join(__dirname, 'images')));
 app.use('/posts',express.static(path.join(__dirname, 'Posts')));
 
 app.use('/', indexRouter);
+app.use('/auth', AuthRouter);
 app.use('/post', postRouter);
 
 // catch 404 and forward to error handler
@@ -46,12 +49,11 @@ app.use(function(req, res, next) {
 });
 
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  res.status(err.statusCode).send("Some Error Occured");
+app.use(function(error, req, res, next) {
+ console.log(error);
+ const status=error.statusCode || 500;
+ const message=error.data;
+ res.status(status).json({message:message});
 });
 
 Mongoose.connect(URI)

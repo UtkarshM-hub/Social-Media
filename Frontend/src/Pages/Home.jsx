@@ -46,7 +46,7 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <div style={{ padding: "1em 8rem" }}>
       <Message message={createMessage.message} type={createMessage.type} />
       <CreatePost message={setMessageHandler} img={image} />
       {isReloaded === true && (
