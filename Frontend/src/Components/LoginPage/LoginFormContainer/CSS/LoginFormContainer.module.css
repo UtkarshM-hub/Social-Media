@@ -1,0 +1,76 @@
+.LoginFormContainer {
+  height: 100%;
+  flex: 0.5;
+  position: relative;
+}
+
+.MainContainer {
+  height: 100%;
+  flex: 0.5;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transform: translateX(50px);
+}
+
+.MainContainer h2 {
+  color: white;
+}
+
+.MainContainer p {
+  color: grey;
+  font-size: 0.9rem;
+}
+
+.MainContainer a {
+  color: var(--mainColor);
+}
+
+.LoginFormContainer form {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  width: 55%;
+  margin: 1em 0;
+}
+
+.LoginFormContainer form button {
+  background-color: var(--mainColor);
+  font-weight: bold;
+  margin: 1em 0;
+  cursor: pointer;
+}
+
+.form_Elements {
+  width: 100%;
+  background-color: var(--CardBg);
+  outline: none;
+  border: 2px solid transparent;
+  color: white;
+  font-size: 1.2rem;
+  font-family: "Open Sans";
+  padding: 0.5em 1em;
+  margin: 0.5em 0;
+}
+
+.skewed {
+  height: 100%;
+  width: 110%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transform: skew(20deg) translateX(100px);
+  background-color: black;
+}
+
+.valid {
+  border: 2px solid rgb(90, 221, 90);
+}
+
+.invalid {
+  border: 2px solid rgb(224, 88, 88);
+}

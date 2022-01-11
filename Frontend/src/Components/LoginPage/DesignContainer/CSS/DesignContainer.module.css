@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+
+.DesignContainer {
+  width: 50%;
+  height: 100%;
+  flex: 0.5;
+}
+
+.DesignContainer h2 {
+  font-family: "Lobster";
+  margin: 0.5em 1em 0 1em;
+}
+
+.DesignContainer img {
+  height: 100%;
+}
