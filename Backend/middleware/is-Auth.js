@@ -8,7 +8,7 @@ module.exports=(req,res,next)=>{
     }
     let decodedToken;
     try{
-        decodedToken=jwt.verify(token,'ThisisSuperSecretSecret')
+        decodedToken=jwt.verify(token,'YOUR_JWT_SECRET_HERE')
     }catch(err){
         return res.status(403).json({message:"Error while validating"});
     }
