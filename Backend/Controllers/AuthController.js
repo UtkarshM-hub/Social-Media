@@ -36,7 +36,7 @@ exports.LoginHandler=async(req,res,next)=>{
         if(!HashedPassword){
             return res.status(403).send("Invalid Password");
         }
-        const token=jwt.sign({email:email,userId:user._id.toString()},'ThisisSuperSecretSecret',{expiresIn:"1h"});
+        const token=jwt.sign({email:email,userId:user._id.toString()},'YOUR_JWT_TOKEN',{expiresIn:"1h"});
         res.status(200).json({token:token,userId:user._id.toString()});
     }
     catch(err){
