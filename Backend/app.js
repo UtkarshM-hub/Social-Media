@@ -49,11 +49,11 @@ app.use(function(req, res, next) {
 });
 
 // error handler
-app.use(function(error, req, res, next) {
- console.log(error);
- const status=error.statusCode || 500;
- const message=error.data;
- res.status(status).json({message:message});
+app.use(function(err, req, res, next) {
+ console.log(err);
+ const status=err.statusCode || 500;
+ const message=err.data;
+ res.status(406).json({err:err});
 });
 
 Mongoose.connect(URI)

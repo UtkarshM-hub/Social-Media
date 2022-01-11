@@ -2,6 +2,8 @@ const express=require('express');
 const Router=express.Router();
 const multer=require('multer');
 
+const isAuth=require('../middleware/is-Auth');
+
 const postController=require('../Controllers/PostController');
 
 const storage=multer.diskStorage({
@@ -27,7 +29,7 @@ const upload=multer({storage:storage,fileFilter:fileFilter})
 
 Router.post('/createPost',upload.single('image'),postController.createPost);
 
-Router.get('/getPosts',postController.getPosts);
+Router.get('/getPosts',isAuth,postController.getPosts);
 
 Router.post('/getSinglePost',postController.getSinglePost);
 

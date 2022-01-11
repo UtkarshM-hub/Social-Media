@@ -13,7 +13,7 @@ const Home = () => {
     message: undefined,
   });
   const [isReloaded, setIsReloaded] = useState(false);
-
+  const token = localStorage.getItem("Token");
   useEffect(() => {
     getPostsHandler();
   }, []);
@@ -21,7 +21,11 @@ const Home = () => {
   const getPostsHandler = async () => {
     setIsReloaded(true);
     await axios
-      .get("http://localhost/post/getPosts")
+      .get("http://localhost/post/getPosts", {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
       .then((result) => {
         setPosts(result.data.reverse());
         console.log("working");
