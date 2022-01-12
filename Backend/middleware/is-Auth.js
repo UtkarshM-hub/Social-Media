@@ -15,6 +15,6 @@ module.exports=(req,res,next)=>{
     if(!decodedToken){
         return res.status(401).send("Not Authenticated!")
     }
-    req.userId=decodedToken.uerId;
+    req.userId=decodedToken.userId;
     next();
 }

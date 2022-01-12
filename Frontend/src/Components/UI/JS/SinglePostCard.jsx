@@ -13,6 +13,8 @@ import LikesContainer from "./LikesContainer";
 import Message from "./Message";
 
 const SinglePostCard = (props) => {
+  const token = localStorage.getItem("Token");
+  const userID = localStorage.getItem("userId");
   const params = useParams();
   const history = useHistory();
   const { postId } = params;
@@ -42,14 +44,22 @@ const SinglePostCard = (props) => {
         .post(
           "http://localhost/post/getSinglePost",
           JSON.stringify({ postId: postId }),
-          { headers: { "Content-Type": "application/json" } }
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + token,
+            },
+          }
         )
         .then((res) => {
           newImage = res.data.post.image.toString().replace("public", "");
           setPostData({
             image: newImage,
             text: res.data.post.text,
-            id: res.data.post._id,
+            id: res.data.post._id.toString(),
+            profilePic: res.data.post.creator.profilePic,
+            userName: res.data.post.creator.userName,
+            creatorId: res.data.post.creator._id,
           });
         })
         .catch((err) => console.log(err));
@@ -63,7 +73,10 @@ const SinglePostCard = (props) => {
         "http://localhost/post/DeletePost",
         JSON.stringify({ postId: postId, image: postData.image }),
         {
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
         }
       )
       .then(async (res) => {
@@ -95,20 +108,21 @@ const SinglePostCard = (props) => {
             <div className={classes.Card_InfoContainer}>
               <div className={classes.Card_Profile}>
                 <img
-                  src={`http://localhost/Posts/IMG-20200512-WA0005.jpg`}
+                  src={`http://localhost${postData.profilePic}`}
                   alt="Profile"
                 />
               </div>
-              <p>utkarshmandape</p>
+              <p>{postData.userName}</p>
             </div>
-            {/* <div></div> */}
-            <FontAwesomeIcon
-              onClick={(e) => {
-                setIsOpen((previous) => !previous);
-              }}
-              className={classes.dotMenu}
-              icon={faEllipsisV}
-            />
+            {postData.creatorId === userID && (
+              <FontAwesomeIcon
+                onClick={(e) => {
+                  setIsOpen((previous) => !previous);
+                }}
+                className={classes.dotMenu}
+                icon={faEllipsisV}
+              />
+            )}
           </div>
           {isOpen && (
             <div className={classes.DropDown}>

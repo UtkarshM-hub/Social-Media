@@ -7,22 +7,24 @@ import SinglePost from './Pages/SinglePost';
 import EditPost from './Components/EditPost/JS/EditPost';
 import Signup from './Pages/Signup';
 import Login from './Pages/Login';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from "react-router-dom";
+import MyPosts from './Pages/MyPosts';
 
 function App() {
-  const token=localStorage.getItem("Token");
-  const userId=localStorage.getItem("userId");
-  const expiryDate=localStorage.getItem("expiryDate");
-  const date=new Date(new Date().getTime());
-  const history=useHistory();
-  useEffect(()=>{
-    if(expiryDate<date){
+
+  const token = localStorage.getItem("Token");
+  const userId = localStorage.getItem("userId");
+  const expiryDate = localStorage.getItem("expiryDate");
+  const date = new Date(new Date().getTime()).toISOString();
+  const history = useHistory();
+  useEffect(() => {
+    if (expiryDate < date|| !expiryDate) {
       localStorage.removeItem("Token");
       localStorage.removeItem("userId");
       localStorage.removeItem("expiryDate");
       history.push("/signup");
     }
-  },[])
+  }, []);
 
   return (
     <Switch>
@@ -41,6 +43,9 @@ function App() {
         </Route>
         <Route path="/post/editPost/:editPostId" exact>
           <EditPost/>
+        </Route>
+        <Route path="/myposts" exact>
+          <MyPosts/>
         </Route>
       </Layout>
     </Switch>

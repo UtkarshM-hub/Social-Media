@@ -27,6 +27,7 @@ nav {
   text-decoration: none;
   color: rgb(136, 136, 136);
   padding: 0 1em;
+  cursor: pointer;
 }
 
 .Nav_Link:hover {

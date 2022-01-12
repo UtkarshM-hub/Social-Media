@@ -7,7 +7,12 @@ const PostSchema=new Schema({
     },
     image:{
         type:String
+    },
+    creator:{
+        type:Schema.Types.ObjectId,
+        required:true,
+        ref:'User'
     }
-});
+},{timestamps:true});
 
 module.exports=Mongoose.model('Post',PostSchema);
