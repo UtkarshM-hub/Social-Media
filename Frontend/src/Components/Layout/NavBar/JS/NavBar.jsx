@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Logo from "../../../../sources/Logo.png";
 import classes from "../CSS/NavBar.module.css";
 import { NavLink } from "react-router-dom";
@@ -8,8 +8,10 @@ import {
   faUserCircle,
   faHashtag,
 } from "@fortawesome/free-solid-svg-icons";
+import ProfileDropDown from "../../../ProfileDropDown/JS/ProfileDropDown";
 
 const NavBar = () => {
+  const [DropDownState, setDropDownState] = useState(false);
   return (
     <nav>
       <div className={classes.Nav_Main}>
@@ -26,24 +28,27 @@ const NavBar = () => {
             <FontAwesomeIcon className={classes.Nav_Icon} icon={faHome} />
           </NavLink>
           <NavLink
-            to="/Post"
+            to="/myposts"
             className={classes.Nav_Link}
             activeClassName={classes.active}
           >
             <FontAwesomeIcon className={classes.Nav_Icon} icon={faHashtag} />
           </NavLink>
-          <NavLink
+          <div
             exact
-            to="/Profile"
             className={classes.Nav_Link}
             activeClassName={classes.active}
+            onClick={() => {
+              setDropDownState((prev) => !prev);
+            }}
           >
             <FontAwesomeIcon
               title="Profile"
               className={classes.Nav_Icon}
               icon={faUserCircle}
             />
-          </NavLink>
+          </div>
+          {DropDownState && <ProfileDropDown />}
         </ul>
       </div>
     </nav>

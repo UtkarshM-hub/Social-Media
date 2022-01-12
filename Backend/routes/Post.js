@@ -27,14 +27,16 @@ const fileFilter=(req,file,cb)=>{
 
 const upload=multer({storage:storage,fileFilter:fileFilter})
 
-Router.post('/createPost',upload.single('image'),postController.createPost);
+Router.post('/createPost',isAuth,upload.single('image'),postController.createPost);
 
 Router.get('/getPosts',isAuth,postController.getPosts);
 
-Router.post('/getSinglePost',postController.getSinglePost);
+Router.post('/getSinglePost',isAuth,postController.getSinglePost);
 
-Router.post('/DeletePost',postController.DeletePost);
+Router.post('/DeletePost',isAuth,postController.DeletePost);
 
-Router.post('/editPost',upload.single('image'),postController.editPost);
+Router.post('/editPost',isAuth,upload.single('image'),postController.editPost);
+
+Router.get('/getMyPosts',isAuth,postController.getMyPosts);
 
 module.exports=Router;

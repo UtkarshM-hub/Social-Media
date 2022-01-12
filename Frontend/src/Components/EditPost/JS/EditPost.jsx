@@ -6,6 +6,7 @@ import Message from "../../UI/JS/Message";
 import classes from "../CSS/EditPost.module.css";
 
 const EditPost = () => {
+  const token = localStorage.getItem("Token");
   const [formInfo, setFormInfo] = useState({
     message: undefined,
     image: undefined,
@@ -28,7 +29,10 @@ const EditPost = () => {
           "http://localhost/post/getSinglePost",
           JSON.stringify({ postId: editPostId }),
           {
-            headers: { "Content-Type": "application/json" },
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + token,
+            },
           }
         )
         .then((res) => {
@@ -67,7 +71,10 @@ const EditPost = () => {
 
     await axios
       .post("http://localhost/post/editPost", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: "Bearer " + token,
+        },
       })
       .then(async (res) => {
         console.log(res);

@@ -7,16 +7,39 @@ import image from "../sources/Example.jpg";
 import loader from "../sources/Spinner.gif";
 
 const Home = () => {
+  const token = localStorage.getItem("Token");
+  const userId = localStorage.getItem("userId");
   const [posts, setPosts] = useState([]);
   const [createMessage, setCreateMessage] = useState({
     type: undefined,
     message: undefined,
   });
   const [isReloaded, setIsReloaded] = useState(false);
-  const token = localStorage.getItem("Token");
+  const [profilePic, setProfilePic] = useState();
   useEffect(() => {
     getPostsHandler();
+    getUserInfoHandler();
   }, []);
+
+  const getUserInfoHandler = async () => {
+    await axios
+      .post(
+        "http://localhost/user/getUserData",
+        JSON.stringify({ userId: userId }),
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+        }
+      )
+      .then((res) => {
+        setProfilePic(res.data.profilePic);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const getPostsHandler = async () => {
     setIsReloaded(true);
@@ -31,7 +54,10 @@ const Home = () => {
         console.log("working");
       })
       .catch((err) => {
-        console.log(err);
+        if (err) {
+          if (err.response.status === 403) {
+          }
+        }
       });
     setIsReloaded(false);
   };
@@ -52,7 +78,11 @@ const Home = () => {
   return (
     <div style={{ padding: "1em 8rem" }}>
       <Message message={createMessage.message} type={createMessage.type} />
-      <CreatePost message={setMessageHandler} img={image} />
+      <CreatePost
+        profilePic={profilePic}
+        message={setMessageHandler}
+        img={image}
+      />
       {isReloaded === true && (
         <div
           style={{
@@ -78,6 +108,8 @@ const Home = () => {
             id={post._id}
             image={post.image}
             text={post.text}
+            username={post.creator.userName}
+            profilePic={post.creator.profilePic}
           />
         ))}
       {!posts[0] && isReloaded === false && (

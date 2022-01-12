@@ -6,6 +6,7 @@ import Button from "../../UI/JS/Button";
 import axios from "axios";
 
 const CreatePost = (props) => {
+  const token = localStorage.getItem("Token");
   const [image, setImage] = useState(undefined);
   const [spanEle, setSpanEle] = useState(null);
   const [text, setText] = useState(null);
@@ -31,7 +32,10 @@ const CreatePost = (props) => {
     form.append("image", image);
     await axios
       .post("http://localhost/post/createPost", form, {
-        headers: { "Content-Type": "multipart/form-data" },
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: "Bearer " + token,
+        },
       })
       .then((result) => {
         spanEle.innerText = "";
@@ -51,7 +55,7 @@ const CreatePost = (props) => {
     <div className={classes.CreatePost}>
       <div className={classes.Card_Info}>
         <div className={classes.Card_Profile}>
-          <img src={props.img} alt="Profile" />
+          <img src={`http://localhost${props.profilePic}`} alt="Profile" />
         </div>
       </div>
       <div className={classes.CreatePost_Attachments}>

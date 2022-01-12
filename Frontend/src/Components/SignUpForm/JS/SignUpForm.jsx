@@ -33,6 +33,7 @@ const SignUpForm = () => {
 
   const FormSubmitHandler = async (e) => {
     let errorData;
+    e.preventDefault();
     if (
       emailIsValid &&
       passwordIsValid &&

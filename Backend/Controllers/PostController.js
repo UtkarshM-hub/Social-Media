@@ -1,6 +1,7 @@
 const Post=require('../Modules/PostModule');
 const fs=require('fs');
 const path=require('path');
+const User=require('../Modules/User');
 
 exports.createPost=async(req,res,next)=>{
     const { Text }=req.body;
@@ -9,9 +10,12 @@ exports.createPost=async(req,res,next)=>{
         res.status(404).send("Image Not Found")
     }
     try{
-        const newPost=await new Post({text:Text,image:image.path});
+        const newPost=await new Post({text:Text,image:image.path,creator:req.userId});
         newPost.save();
-        res.status(200).send("success");
+        const user=await User.findById(req.userId);
+        user.posts.push(newPost);
+        user.save();
+        res.status(200).send({_id:user._id,name:user.userName});
     }catch(err){
         if(!err.statusCode){
             err.statusCode=500;
@@ -22,7 +26,7 @@ exports.createPost=async(req,res,next)=>{
 
 exports.getPosts=async(req,res,next)=>{
     try{
-        const posts=await Post.find();
+        const posts=await Post.find().populate('creator');
         res.send(posts);
     } catch(err){
         if(!err.statusCode){
@@ -36,7 +40,7 @@ exports.getSinglePost=async(req,res,next)=>{
     const { postId }=req.body;
 
     try{
-        const postData=await Post.findById(postId);
+        const postData=await Post.findById(postId).populate('creator');
         res.json({post:postData});
     }
     catch(err){
@@ -50,10 +54,17 @@ exports.getSinglePost=async(req,res,next)=>{
 exports.DeletePost=async(req,res,next)=>{
     const { postId,image } = req.body;
     try{
+        const post=await Post.findById(postId);
+        if(post.creator.toString()!==req.userId){
+            return res.status(403).send({message:"Not Allowed to Delete!"})
+        }
         fs.unlink("public"+image,async(err,response)=>{
             if(err){
                 return next(err);
             }
+            const UserConnection=await User.findById(req.userId);
+            UserConnection.posts.pull(postId);
+            UserConnection.save();
             const respo=await Post.findByIdAndDelete(postId);
             res.send(respo);
         })
@@ -69,6 +80,10 @@ exports.DeletePost=async(req,res,next)=>{
 exports.editPost=async(req,res,next)=>{
     const { text,id,image,url }=req.body;
     try{
+        const post=await Post.findById(id);
+        if(post.creator.toString()!==req.userId){
+            return res.status(403).send({message:"Not Allowed to Delete!"})
+        }
         if(!image){
             const { path }=req.file;
             fs.unlink(url,(err)=>{
@@ -90,4 +105,13 @@ exports.editPost=async(req,res,next)=>{
         next(err);
     }
     
+}
+
+exports.getMyPosts=async(req,res,next)=>{
+    try{
+        const posts=await User.findById(req.userId).populate('posts');
+        res.send(posts);
+    }catch(err){
+        next(err);
+    }
 }

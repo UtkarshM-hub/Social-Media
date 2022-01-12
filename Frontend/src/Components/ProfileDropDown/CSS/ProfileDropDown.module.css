@@ -1,0 +1,69 @@
+.profileDD {
+  position: absolute;
+  background-color: black;
+  width: 20%;
+  /* border-radius: 10px; */
+  top: 10%;
+  right: 10%;
+  background-color: var(--CardBg);
+  z-index: 9999;
+}
+
+.profileDD ul {
+  padding: 0.5em;
+  /* background-color: rgb(44, 44, 44); */
+  border-radius: 10px;
+}
+
+.option_Elements {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: grey;
+  cursor: pointer;
+  padding: 0.5em 0.2em;
+  border-left: 3px solid transparent;
+  text-decoration: none;
+}
+
+.option_Elements svg {
+  color: var(--mainColor);
+}
+
+.option_Elements:hover {
+  color: white;
+}
+
+.option_Elements p {
+  font-weight: 540;
+  font-size: 1.1em;
+}
+
+.option_Elements .Profile_ImgContainer {
+  width: 2em;
+  height: 2em;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.option_Elements .Profile_ImgContainer img {
+  width: 100%;
+}
+
+.logout {
+  text-align: center;
+  width: 100%;
+  border: 2px solid var(--Red);
+  color: var(--Red);
+  padding: 0.5em;
+  font-weight: 550;
+  margin: 1em 0 0 0;
+  background-color: transparent;
+  font-size: 1.1em;
+  cursor: pointer;
+}
+
+.logout:hover {
+  color: white;
+  background-color: var(--Red);
+}

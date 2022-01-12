@@ -18,9 +18,9 @@ const Card = (props) => {
     <div className={classes.Card}>
       <div className={classes.Card_Info} onClick={openSingleCardHandler}>
         <div className={classes.Card_Profile}>
-          <img src={`http://localhost${image}`} alt="Profile" />
+          <img src={`http://localhost${props.profilePic}`} alt="Profile" />
         </div>
-        <p>utkarshmandape</p>
+        <p>{props.username}</p>
       </div>
       <div className={classes.Card_PostImg} onClick={openSingleCardHandler}>
         <img src={`http://localhost${image}`} alt="post" />

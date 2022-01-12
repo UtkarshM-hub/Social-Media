@@ -14,7 +14,7 @@ exports.signupHandler=async(req,res,next)=>{
         const hashedPassword=await bcrypt.hash(password,12);
         const user=await new User({email:email,password:hashedPassword,userName:username});
         const userData=await user.save();
-        res.status(201).json({message:"User Created Successfully!",userId:userData._id});
+        return res.status(200).json({message:"User Created Successfully!",userId:userData._id});
     }
     catch(err){
         if(!err.statusCode){
