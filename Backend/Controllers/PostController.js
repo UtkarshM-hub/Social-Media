@@ -115,3 +115,23 @@ exports.getMyPosts=async(req,res,next)=>{
         next(err);
     }
 }
+
+exports.AddLikeHandler=async(req,res,next)=>{
+    const {postId,status}=req.body;
+    try{
+        const post=await Post.findById(postId);
+        if(status===true){
+            post.likes+=1;
+            await post.likedBy.push(req.userId);
+        }
+        if(status===false){
+            post.likes-=1;
+            await post.likedBy.pull(req.userId);
+        }
+        post.save();
+        res.status(200).send("You Liked The Post")
+    }
+    catch(err){
+        res.status(401).send("Error Occured");
+    }
+}

@@ -52,6 +52,9 @@ const SinglePostCard = (props) => {
           }
         )
         .then((res) => {
+          if (res.data === null) {
+            history.push("/");
+          }
           newImage = res.data.post.image.toString().replace("public", "");
           setPostData({
             image: newImage,
@@ -60,7 +63,10 @@ const SinglePostCard = (props) => {
             profilePic: res.data.post.creator.profilePic,
             userName: res.data.post.creator.userName,
             creatorId: res.data.post.creator._id,
+            likes: res.data.post.likes,
+            isLiked: res.data.post.likedBy.some((item) => item === userID),
           });
+          console.log(res);
         })
         .catch((err) => console.log(err));
     };
@@ -95,7 +101,7 @@ const SinglePostCard = (props) => {
         console.log(err);
       });
   };
-
+  console.log(postData);
   return (
     <Fragment>
       <Message message={createMessage.message} type={createMessage.type} />
@@ -153,7 +159,11 @@ const SinglePostCard = (props) => {
             </div>
           )}
           <p id={classes["Card_description"]}>{postData.text}</p>
-          <LikesContainer />
+          <LikesContainer
+            isLiked={postData.isLiked}
+            likes={postData.likes}
+            postId={postId}
+          />
         </div>
       </div>
     </Fragment>

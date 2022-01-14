@@ -9,6 +9,7 @@ import Signup from './Pages/Signup';
 import Login from './Pages/Login';
 import { useHistory } from "react-router-dom";
 import MyPosts from './Pages/MyPosts';
+import Profile from './Pages/Profile';
 
 function App() {
 
@@ -46,6 +47,9 @@ function App() {
         </Route>
         <Route path="/myposts" exact>
           <MyPosts/>
+        </Route>
+        <Route path="/profile" exact>
+          <Profile/>
         </Route>
       </Layout>
     </Switch>

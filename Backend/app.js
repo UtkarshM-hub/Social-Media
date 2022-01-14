@@ -38,6 +38,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use("/images",express.static(path.join(__dirname, 'images')));
 app.use('/posts',express.static(path.join(__dirname, 'Posts')));
+app.use('/userData',express.static(path.join(__dirname, 'userData')));
 
 app.use('/', indexRouter);
 app.use('/auth', AuthRouter);

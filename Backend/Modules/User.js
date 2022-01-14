@@ -18,6 +18,10 @@ const UserSchema=new Schema({
         type:String,
         default:"/images/download.png"
     },
+    CoverImage:{
+        type:String,
+        default:"/images/BgCover.jpg"
+    },
     posts:[
         {
             type:Schema.Types.ObjectId,

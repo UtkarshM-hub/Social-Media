@@ -1,0 +1,23 @@
+.DeleteAccount {
+  width: 100%;
+  margin: 1em 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.DeleteAccount_Btn {
+  width: 100%;
+  background-color: transparent;
+  color: var(--Red);
+  font-size: 1.1em;
+  padding: 0.5em;
+  font-weight: bold;
+  cursor: pointer;
+  border: 2px solid var(--Red);
+}
+
+.DeleteAccount_Btn:hover {
+  background-color: var(--Red);
+  color: white;
+}

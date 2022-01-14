@@ -1,0 +1,135 @@
+.ProfileContainer {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 15px;
+  height: 70vh;
+  position: relative;
+  background-color: #080808;
+}
+
+.Profile_Cover {
+  width: 100%;
+  height: 60%;
+  overflow: hidden;
+}
+
+.Profile_Cover img {
+  object-fit: cover;
+  width: 100%;
+}
+
+.Profile_Info {
+  width: 100%;
+  height: 100%;
+}
+
+.profile_Picture {
+  width: 18%;
+  height: 45%;
+  overflow: hidden;
+  position: absolute;
+  top: 35%;
+  left: 5%;
+  border-radius: 50%;
+  border: 5px solid white;
+}
+
+.profile_Picture img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.Profile_InfoSection {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.divider {
+  width: 75%;
+  padding: 1em 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.editProfileBtn {
+  color: grey;
+  background-color: transparent;
+  outline: none;
+  font-size: 1em;
+  padding: 0.5em 1em;
+  border: none;
+  cursor: pointer;
+}
+
+.editProfileBtn:hover {
+  color: white;
+}
+
+.editModeBtn {
+  color: var(--mainColor);
+  background-color: transparent;
+  outline: none;
+  font-size: 1em;
+  padding: 0.5em 1em;
+  border: 2px solid var(--mainColor);
+  cursor: pointer;
+}
+
+.editModeBtn:hover {
+  color: white;
+  background-color: var(--mainColor);
+}
+
+.editProfileBtn .icon {
+  margin: 0 0.5em 0 0;
+  color: var(--mainColor);
+}
+
+.ProfileCover_ImageOverlay {
+  height: 60%;
+}
+
+.ProfilePic_ImageOverlay {
+  height: 50%;
+  bottom: 0;
+}
+
+.DefaultOverlay {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.493);
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.ProfilePic_Icon {
+  margin: 0 0.5em;
+}
+
+.inputElement {
+  border: none;
+  outline: none;
+  padding: 0.5em 1em;
+  font-size: 1.1em;
+  background-color: var(--secondaryBlack);
+  color: white;
+}
+
+.spinner {
+  width: 10%;
+  margin: 0 auto;
+}
+
+.spinner_Container {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
