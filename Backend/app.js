@@ -50,6 +50,9 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
+if(process.env.NODE_ENV==="production"){
+  app.use(express.static("Frontend/build"))
+}
 // error handler
 app.use(function(err, req, res, next) {
  console.log(err);
@@ -58,10 +61,11 @@ app.use(function(err, req, res, next) {
  res.status(406).json({err:err});
 });
 
+
 Mongoose.connect(URI)
 .then(result=>{
   console.log('Connected');
-  return app.listen(80);
+  return app.listen(process.env.PORT || 5000);
 }).catch(err=>{console.log(err)});
 
 module.exports = app;
