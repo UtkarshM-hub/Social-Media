@@ -39,4 +39,6 @@ Router.post('/editPost',isAuth,upload.single('image'),postController.editPost);
 
 Router.get('/getMyPosts',isAuth,postController.getMyPosts);
 
+Router.post('/addLike',isAuth,postController.AddLikeHandler);
+
 module.exports=Router;

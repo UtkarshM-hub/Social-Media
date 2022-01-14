@@ -35,9 +35,7 @@ const NavBar = () => {
             <FontAwesomeIcon className={classes.Nav_Icon} icon={faHashtag} />
           </NavLink>
           <div
-            exact
             className={classes.Nav_Link}
-            activeClassName={classes.active}
             onClick={() => {
               setDropDownState((prev) => !prev);
             }}
@@ -48,7 +46,7 @@ const NavBar = () => {
               icon={faUserCircle}
             />
           </div>
-          {DropDownState && <ProfileDropDown />}
+          {DropDownState && <ProfileDropDown setDDState={setDropDownState} />}
         </ul>
       </div>
     </nav>

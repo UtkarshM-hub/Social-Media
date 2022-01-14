@@ -6,6 +6,7 @@ import LikesContainer from "./LikesContainer";
 
 const Card = (props) => {
   const history = useHistory();
+  const userId = localStorage.getItem("userId");
   let image;
   if (props.image !== undefined) {
     image = props.image.replace("public", "");
@@ -25,7 +26,12 @@ const Card = (props) => {
       <div className={classes.Card_PostImg} onClick={openSingleCardHandler}>
         <img src={`http://localhost${image}`} alt="post" />
       </div>
-      <LikesContainer className={classes.likesContainerClass} />
+      <LikesContainer
+        isLiked={props.isLiked}
+        likes={props.likes}
+        postId={props.id}
+        className={classes.likesContainerClass}
+      />
       <div className={classes.Card_Text} onClick={openSingleCardHandler}>
         <p>{props.text}</p>
       </div>

@@ -34,6 +34,7 @@ const Home = () => {
         }
       )
       .then((res) => {
+        localStorage.setItem("ProfilePic", res.data.profilePic);
         setProfilePic(res.data.profilePic);
       })
       .catch((err) => {
@@ -51,11 +52,10 @@ const Home = () => {
       })
       .then((result) => {
         setPosts(result.data.reverse());
-        console.log("working");
       })
       .catch((err) => {
         if (err) {
-          if (err.response.status === 403) {
+          if (err.response) {
           }
         }
       });
@@ -74,7 +74,7 @@ const Home = () => {
       await getPostsHandler();
     }, 2000);
   };
-
+  console.log(posts);
   return (
     <div style={{ padding: "1em 8rem" }}>
       <Message message={createMessage.message} type={createMessage.type} />
@@ -110,6 +110,8 @@ const Home = () => {
             text={post.text}
             username={post.creator.userName}
             profilePic={post.creator.profilePic}
+            likes={post.likes}
+            isLiked={post.likedBy.some((item) => item === userId)}
           />
         ))}
       {!posts[0] && isReloaded === false && (
