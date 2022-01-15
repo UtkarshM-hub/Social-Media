@@ -45,14 +45,14 @@ app.use('/auth', AuthRouter);
 app.use('/post', postRouter);
 app.use('/user', usersRouter);
 
+if(process.env.NODE_ENV==="production"){
+  app.use(express.static("Frontend/build"))
+}
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
 
-if(process.env.NODE_ENV==="production"){
-  app.use(express.static("Frontend/build"))
-}
 // error handler
 app.use(function(err, req, res, next) {
  console.log(err);
